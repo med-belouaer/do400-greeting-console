@@ -21,6 +21,13 @@ pipeline{
             }
         }
 
-        // Add the Release stage here
+        stage('Deploy') {
+    steps {
+        sh '''
+            oc project ikciwk-greetings
+            oc start-build greeting-service --follow --wait
+        '''
+    }
+}
     }
 }
